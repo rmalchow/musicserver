@@ -1,0 +1,10 @@
+stages:
+- docker
+
+build-docker:
+  stage: docker
+  image: docker
+  tags:
+  - docker
+  script:
+  - sh build-docker.sh

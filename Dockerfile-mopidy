@@ -1,0 +1,12 @@
+FROM debian:10
+
+
+COPY assets/install /install
+COPY assets/services /services
+COPY assets/docker-entrypoint.sh /
+RUN /install/install.sh
+
+ENTRYPOINT /docker-entrypoint.sh
+
+#EXPOSE 6600
+#EXPOSE 6800
