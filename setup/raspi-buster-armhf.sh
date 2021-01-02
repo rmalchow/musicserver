@@ -17,7 +17,13 @@ bash get-docker.sh
 apt-get install docker-ce docker-ce-cli containerd.io docker-compose -y
 mkdir -p /docker/music
 cd /docker/music
-git clone https://gitlab.sly.io/ldap/music.git .
+if [ -d "/docker/music/.git" ]; then
+  echo "updating musicserver git repo ... "
+  git pull
+else
+  echo "cloning musicserver git repo ... "
+  git clone https://github.com/rmalchow/musicserver.git .
+fi
 cd /docker/music/compose
 rm -rf /etc/avahi/services/*
 cp /docker/music/setup/snapserver-avahi.service /etc/avahi/services/
