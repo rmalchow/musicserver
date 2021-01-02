@@ -4,6 +4,10 @@ set -e
 
 cd /install
 
+apt update
+echo "installing basics ... "
+apt install apt-utils gnupg2 python3-pip  -y
+
 # mopidy
 echo "installing mopidy repo ... "
 apt-key add mopidy.gpg
