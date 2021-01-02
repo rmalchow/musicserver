@@ -12,9 +12,9 @@ arch=$(arch)
 
 if [ "x86_64" == ${arch} ]; then
   arch="amd64"
-else if [ "armv7l" == ${arch} ]; then
+elif [ "armv7l" == ${arch} ]; then
   arch="armhf"
-else if [ "aarch64" == ${arch} ]; then
+elif [ "aarch64" == ${arch} ]; then
   arch="armhf"
 else
   echo "unknow arch: ${arch}"
