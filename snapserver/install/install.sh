@@ -6,7 +6,11 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "installing basics ... "
 apt-get update
-apt-get install -y wget apt-utils ca-certificates
+apt-get install -y \
+  wget apt-utils ca-certificates \
+  libasound2 libavahi-client3 libavahi-common3 libexpat1 \
+  libflac8 libogg0 libopus0 libsoxr0 libvorbis0a \
+  libvorbisenc2 
 
 arch=$(arch)
 
