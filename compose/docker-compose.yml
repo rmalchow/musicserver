@@ -11,7 +11,7 @@ services:
       - "6680:6680"
     volumes:
       - ${home}/soundshare:/tmp/sharesound
-      - ${home}/assets/install/mopidy.conf:/etc/mopidy/mopidy.conf
+      - ${home}/config/mopidy.conf:/etc/mopidy/mopidy.conf
       #- /home/rm/Desktop/music:/var/lib/mopidy/media
     network: host
 
