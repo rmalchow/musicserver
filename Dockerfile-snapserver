@@ -1,12 +1,17 @@
 FROM debian:10
 
-ARG  snapcast_version=0.20.0
-ARG TARGETARCH
+ARG  snapcast_version=0.22.0-1
 
 RUN  apt-get update \
-  && apt-get install -y wget apt-utils ca-certificates snapserver \
+  && apt-get install -y wget apt-utils ca-certificates \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /root/.cache/*
+
+  RUN  wget https://github.com/badaix/snapcast/releases/download/v${snapcast_version}/snapserver_${snapcast_version}_$(arch).deb && \
+    dpkg -i snapserver_* && \
+    apt-get update && \
+    && apt-get -f install -y && \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY snapserver/snapserver.conf /etc/snapserver.conf
 COPY snapserver/index.html /www/index.html
