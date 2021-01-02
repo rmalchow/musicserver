@@ -1,8 +1,6 @@
 FROM debian:10
 
-
 COPY mopidy/install /install
-COPY mopidy/services /services
 COPY mopidy/docker-entrypoint.sh /
 RUN /install/install.sh
 

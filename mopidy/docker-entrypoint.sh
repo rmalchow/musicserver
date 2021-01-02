@@ -1,3 +1,2 @@
 #!/bin/bash
-
-exec runsvdir /services/run
+exec /usr/bin/mopidy --config /etc/mopidy/mopidy.conf
