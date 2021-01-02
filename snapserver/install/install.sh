@@ -2,6 +2,7 @@
 
 set -e
 
+export DEBIAN_FRONTEND=noninteractive
 
 echo "installing basics ... "
 apt-get update
