@@ -1,7 +1,7 @@
 version: '3'
 services:
   mopidy:
-    image: mopidy
+    image: rmalchow/mopidy
     hostname: mopidy
     expose:
       - 6600
@@ -10,19 +10,16 @@ services:
       - "6600:6600"
       - "6680:6680"
     volumes:
-      - ${base}/soundshare:/tmp/sharesound
-      - ${base}/assets/install/mopidy.conf:/etc/mopidy/mopidy.conf
+      - ${home}/soundshare:/tmp/sharesound
+      - ${home}/assets/install/mopidy.conf:/etc/mopidy/mopidy.conf
       #- /home/rm/Desktop/music:/var/lib/mopidy/media
     network: host
 
   snapserver:
-    image: nolte/snapcast-server
+    image: rmalchow//snapserver
     volumes:
-      - ${base}/soundshare:/tmp/sharesound
+      - ${home}/soundshare:/tmp/sharesound
     command: "-s pipe:///tmp/sharesound/snapfifo?name=Radio"
     ports:
       - "1704:1704"
     network: host
-
-volumes:
-  soundshare:
