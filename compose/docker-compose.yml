@@ -2,7 +2,7 @@ version: '3'
 services:
   mopidy:
     image: rmalchow/mopidy
-    hostname: mopidy
+    hostname: ${hostname}-mopidy
     expose:
       - 6600
       - 6680
@@ -13,7 +13,7 @@ services:
       - ${home}/soundshare:/tmp/snapcast
       - ${home}/config/mopidy.conf:/etc/mopidy/mopidy.conf
       #- /home/rm/Desktop/music:/var/lib/mopidy/media
-    network_mode: host
+    #network_mode: host
 
   snapserver:
     image: rmalchow/snapserver
@@ -22,4 +22,6 @@ services:
     command: "-s pipe:///tmp/sharesound/snapfifo?name=Radio"
     ports:
       - "1704:1704"
-    network_mode: host
+      - "1705:1705"
+      - "1780:1780"
+    #network_mode: host
