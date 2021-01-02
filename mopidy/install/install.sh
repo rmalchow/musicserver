@@ -39,3 +39,4 @@ package/install
 package/install-man
 
 rm -rf /root/.cache/*
+rm -rf /var/lib/apt/lists/*

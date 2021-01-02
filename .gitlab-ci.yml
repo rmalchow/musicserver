@@ -5,6 +5,6 @@ build-docker:
   stage: docker
   image: docker
   tags:
-  - docker
+  - docker-buildx
   script:
   - sh build-docker.sh
