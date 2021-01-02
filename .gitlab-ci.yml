@@ -8,3 +8,4 @@ build-docker:
   - docker-buildx-script
   script:
   - sh build-docker.sh
+  - sh push_github.sh
