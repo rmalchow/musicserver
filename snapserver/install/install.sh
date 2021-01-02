@@ -11,7 +11,7 @@ apt-get install -y \
   wget ca-certificates \
   libasound2 libavahi-client3 libavahi-common3 libexpat1 \
   libflac8 libogg0 libopus0 libsoxr0 libvorbis0a \
-  libvorbisenc2
+  libvorbisenc2 samba-client
 arch=$(arch)
 
 if [ "x86_64" == ${arch} ]; then
