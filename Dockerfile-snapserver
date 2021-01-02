@@ -10,8 +10,8 @@ RUN  apt-get update \
   RUN  wget https://github.com/badaix/snapcast/releases/download/v${snapcast_version}/snapserver_${snapcast_version}_$(arch).deb && \
     dpkg -i snapserver_* && \
     apt-get update && \
-    && apt-get -f install -y && \
-    && rm -rf /var/lib/apt/lists/*
+    apt-get -f install -y && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY snapserver/snapserver.conf /etc/snapserver.conf
 COPY snapserver/index.html /www/index.html
