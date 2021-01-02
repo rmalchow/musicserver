@@ -10,23 +10,24 @@ apt-get install -y \
   wget apt-utils ca-certificates \
   libasound2 libavahi-client3 libavahi-common3 libexpat1 \
   libflac8 libogg0 libopus0 libsoxr0 libvorbis0a \
-  libvorbisenc2 
+  libvorbisenc2 \
+  libasound2-dev libvorbisidec-dev libvorbis-dev libopus-dev libflac-dev libsoxr-dev alsa-utils libavahi-client-dev avahi-daemon libexpat1-dev \
+  gcc make automake git g++
 
-arch=$(arch)
+mkdir -p /usr/local/src
+cd /usr/local/src
+wget https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2
+tar -xzf boost_1_75_0.tar.bz2
 
-if [ "x86_64" == ${arch} ]; then
-  arch="amd64"
-elif [ "armv7l" == ${arch} ]; then
-  arch="armhf"
-elif [ "aarch64" == ${arch} ]; then
-  arch="armhf"
-else
-  echo "unknow arch: ${arch}"
-  exit
-fi
+
 
 echo "downloading snapserver release ... "
-wget https://github.com/badaix/snapcast/releases/download/v0.22.0/snapserver_0.22.0-1_${arch}.deb
+cd /usr/local/src
+git clone https://github.com/badaix/snapcast
+cd snapcast
+git checkout v0.22.0
+git submodule update --init --recursive
+ADD_CFLAGS="-I/usr/local/src/boost_1_75_0" make installserver
 
 echo "installing snapserver release ... "
 dpkg -i snapserver_* || true
