@@ -16,7 +16,7 @@ services:
     network_mode: host
 
   snapserver:
-    image: rmalchow//snapserver
+    image: rmalchow/snapserver
     volumes:
       - ${home}/soundshare:/tmp/sharesound
     command: "-s pipe:///tmp/sharesound/snapfifo?name=Radio"
