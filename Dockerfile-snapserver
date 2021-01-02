@@ -1,7 +1,5 @@
 FROM debian:10
 
-ARG  snapcast_version=0.22.0-1
-
 COPY snapserver/install /install
 COPY snapserver/docker-entrypoint.sh /
 RUN bash /install/install.sh
