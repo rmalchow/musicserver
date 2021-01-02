@@ -2,17 +2,11 @@ FROM debian:10
 
 ARG  snapcast_version=0.22.0-1
 
-RUN  apt-get update \
-  && apt-get install -y wget apt-utils ca-certificates \
-  && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /root/.cache/*
-
-  RUN  wget https://github.com/badaix/snapcast/releases/download/v${snapcast_version}/snapserver_${snapcast_version}_$(arch | sed s:"x86_64":"amd64":g).deb && \
-    dpkg -i snapserver_* && \
-    apt-get update && \
-    apt-get -f install -y && \
-    rm -rf /var/lib/apt/lists/*
+COPY snapserver/install /install
+COPY snapserver/docker-entrypoint.sh /
+RUN bash /install/install.sh
 
 COPY snapserver/snapserver.conf /etc/snapserver.conf
 COPY snapserver/index.html /www/index.html
-ENTRYPOINT ["/bin/bash","-c","/usr/bin/snapserver -c /etc/snapserver.conf"]
+
+ENTRYPOINT /docker-entrypoint.sh
