@@ -2,6 +2,6 @@
 
 git add .
 git commit -m "ensure pushed"
-git pull github
-git merge github main
+git pull github master
+git merge github master
 git push github --force
