@@ -11,7 +11,7 @@ apt install curl make gcc gnupg2 wget python3-pip vim  -y
 # mopidy
 echo "installing mopidy repo ... "
 apt-key add mopidy.gpg
-curl https://apt.mopidy.com/buster.list > /etc/apt/sources.list.d/mopidy.list
+cp mopidy.list /etc/apt/sources.list.d/mopidy.list
 
 apt update
 echo "installing mopidy packages ... "
