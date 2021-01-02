@@ -13,7 +13,7 @@ services:
       - ${home}/soundshare:/tmp/sharesound
       - ${home}/config/mopidy.conf:/etc/mopidy/mopidy.conf
       #- /home/rm/Desktop/music:/var/lib/mopidy/media
-    network: host
+    network_mode: host
 
   snapserver:
     image: rmalchow//snapserver
@@ -22,4 +22,4 @@ services:
     command: "-s pipe:///tmp/sharesound/snapfifo?name=Radio"
     ports:
       - "1704:1704"
-    network: host
+    network_mode: host
