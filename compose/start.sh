@@ -9,7 +9,7 @@ else
   cp ${home}/mopidy.conf ${home}/config/
 fi
 
-hostname=$(hostname)
+export hostname=$(hostname)
 
 docker-compose pull
 ./stop.sh
