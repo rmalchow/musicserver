@@ -13,15 +13,30 @@ apt-get install git \
   armbian-config -y
 
 apt-get install snapclient -y || true
+
+# install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 bash get-docker.sh
 apt-get install docker-ce docker-ce-cli containerd.io docker-compose -y
+
+# create compose stack from github
 mkdir -p /docker/music
 cd /docker/music
 git clone https://gitlab.sly.io/ldap/music.git .
-cd /docker/music/compose
-rm -rf /etc/avahi/services/*
-cp snapserver-avahi.service /etc/avahi/services/
+
+# configure avahi
+echo "enter a hostname:"
+read HN
+if [ -z "$HN" ]; then
+  echo "hostname unchanged"
+else
+  hostnamectl set-hostname $HN
+fi
+
+cp /docker/music/setup/services/* /etc/avahi/services/
 systemctl enable avahi-daemon
 systemctl restart avahi-daemon
+
+#start stack
+cd /docker/music/compose
 bash ./start.sh

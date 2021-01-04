@@ -31,11 +31,20 @@ else
   echo "cloning musicserver git repo ... "
   git clone https://github.com/rmalchow/musicserver.git .
 fi
-cd /docker/music/compose
 
 # configure avahi
-rm -rf /etc/avahi/services/*
-cp /docker/music/setup/snapserver-avahi.service /etc/avahi/services/
+echo "enter a hostname:"
+read HN
+if [ -z "$HN" ]; then
+  echo "hostname unchanged"
+else
+  hostnamectl set-hostname $HN
+fi
+
+cp /docker/music/setup/services/* /etc/avahi/services/
 systemctl enable avahi-daemon
 systemctl restart avahi-daemon
+
+# install docker
+cd /docker/music/compose
 bash ./start.sh
