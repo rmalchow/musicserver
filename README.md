@@ -12,3 +12,39 @@ i will be adding a process on the host that looks at zeroconf, provides an api t
 
 ![00-basic-shape](docs/00-basic-shape.png)
 
+
+
+# install
+
+to install, simply run the corresponding setup script in `setup/` on a clean raspbian. this will:
+
+- install basic OS dependencies
+- install docker
+- setup the docker-compose stack with mopidy and snapserver
+- setup avahi (not sure if this is needed now that i am using zeroconf in python)
+- setup the "snapcontrol" wrapper around the snapclient
+
+
+
+open your browser and go to: 
+
+​			`http://${IP_OF_RASPBERRY}:5000` 
+
+you should see the basic "snapcontrol" interface there with all players that are currently running
+
+![](docs/01-snapcontrol-basic.png)
+
+
+
+### jellyfin
+
+if you are running  jellyfin with your audio library, you can modify:
+
+`/docker/music/compose/config/mopidy.conf`
+
+so that it becomes visible in mopidy
+
+
+
+
+
