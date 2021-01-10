@@ -9,6 +9,7 @@ apt-get install git \
   alsa-utils \
   curl \
   gnupg-agent \
+  bridge-utils \
   software-properties-common \
   vim git avahi-daemon avahi-utils \
   pulsemixer pulseaudio-utils pamix apulse pulseaudio alsaplayer-common -y
@@ -48,3 +49,7 @@ systemctl restart avahi-daemon
 #start stack
 cd /docker/music/compose
 bash ./start.sh
+
+# make the flask application start on boot
+systemctl enable /docker/music/snapcontrol/snapcontrol.service
+systemctl reload snapcontrol

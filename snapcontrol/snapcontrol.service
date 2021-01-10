@@ -1,0 +1,12 @@
+[Unit]
+Description=uWSGI instance to serve myproject
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/docker/music/snapcontrol
+ExecStart=/docker/music/snapcontrol/run.sh
+
+[Install]
+WantedBy=multi-user.target
