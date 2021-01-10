@@ -42,7 +42,6 @@ else
   hostnamectl set-hostname $HN
 fi
 
-cp /docker/music/setup/services/* /etc/avahi/services/
 systemctl enable avahi-daemon
 systemctl restart avahi-daemon
 
@@ -52,4 +51,4 @@ bash ./start.sh
 
 # make the flask application start on boot
 systemctl enable /docker/music/snapcontrol/snapcontrol.service
-systemctl reload snapcontrol
+systemctl restart snapcontrol
