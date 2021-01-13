@@ -20,6 +20,7 @@ apt-get install snapclient -y || true
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 bash get-docker.sh
+apt-get install cgroup-bin cgroup-tools libcgroup1 aufs-tools -y
 apt-get install docker-ce docker-ce-cli containerd.io docker-compose -y
 systemctl enable docker
 systemctl restart docker
