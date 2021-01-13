@@ -15,7 +15,7 @@ apt-get install git \
   software-properties-common \
   vim git avahi-daemon avahi-utils \
   pulsemixer pulseaudio-utils pamix apulse pulseaudio alsaplayer-common -y
-apt-get install snapclient -y || true
+apt-get install snapclient snapserver -y || true
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -50,4 +50,6 @@ bash ./start.sh
 
 # make the flask application start on boot
 systemctl enable /docker/music/snapcontrol/snapcontrol.service
+systemctl enable /docker/music/snapserver/snapserver.service
 systemctl restart snapcontrol
+systemctl restart snapserver

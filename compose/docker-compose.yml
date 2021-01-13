@@ -11,8 +11,7 @@ services:
       - "6600:6600"
       - "6680:6680"
     volumes:
-      - ${home}/soundshare:/tmp/snapcast
-      - ${home}/config/mopidy.conf:/etc/mopidy/mopidy.conf
+      - /tmp/snapfifo:/tmp/snapcast/snapfifo
       #- /home/rm/Desktop/music:/var/lib/mopidy/media
     #network_mode: host
 
