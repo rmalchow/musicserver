@@ -1,5 +1,7 @@
 #/bin/bash
 set -e
+
+export DEBIAN_FRONTEND=noninteractive
 # install basics
 apt-get update
 apt-get upgrade -y
