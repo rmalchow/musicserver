@@ -1,6 +1,7 @@
 #/bin/bash
 set -e
 
+
 export DEBIAN_FRONTEND=noninteractive
 # install basics
 apt-get update
@@ -16,6 +17,15 @@ apt-get install git \
   vim git avahi-daemon avahi-utils \
   pulsemixer pulseaudio-utils pamix apulse pulseaudio alsaplayer-common -y
 apt-get install snapclient snapserver -y || true
+
+if [ "0" != "$(dkms status |grep wm8960)" ]; then
+  cd /usr/local/src
+  git clone https://github.com/waveshare/WM8960-Audio-HAT
+  cd WM8960-Audio-HAT
+  ./install.sh
+  reboot
+fi
+
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh

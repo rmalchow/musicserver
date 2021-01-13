@@ -11,7 +11,19 @@ services:
       - "6600:6600"
       - "6680:6680"
     volumes:
-      - /tmp/snapfifo:/tmp/snapcast/snapfifo
+      - ${home}/soundshare:/tmp/snapcast
       - ${home}/config/mopidy.conf:/etc/mopidy/mopidy.conf
       #- /home/rm/Desktop/music:/var/lib/mopidy/media
+    #network_mode: host
+
+  snapserver:
+    restart: always
+    image: rmalchow/snapserver
+    volumes:
+      - ${home}/soundshare:/tmp/snapcast
+    command: "-s pipe:///tmp/sharesound/snapfifo?name=Radio"
+    ports:
+      - "1704:1704"
+      - "1705:1705"
+      - "1780:1780"
     #network_mode: host
