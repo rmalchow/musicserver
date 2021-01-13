@@ -39,11 +39,7 @@ fi
 # configure avahi
 echo "enter a hostname:"
 read HN
-if [ -z "$HN" ]; then
-  echo "hostname unchanged"
-else
-  hostnamectl set-hostname $HN
-fi
+hostnamectl set-hostname $HN || true
 
 systemctl enable avahi-daemon
 systemctl restart avahi-daemon
