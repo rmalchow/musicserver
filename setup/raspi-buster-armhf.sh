@@ -27,15 +27,6 @@ apt-get install -y \
   libflac8 libogg0 libopus0 libsoxr0 libvorbis0a \
   libvorbisenc2 samba-client
 
-if [ "0" != "$(dkms status |grep wm8960)" ]; then
-  cd /usr/local/src
-  git clone https://github.com/waveshare/WM8960-Audio-HAT
-  cd WM8960-Audio-HAT
-  ./install.sh
-  reboot
-fi
-
-
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 bash get-docker.sh
@@ -71,7 +62,7 @@ echo "installing snapserver release ... "
 dpkg -i snapserver_* || true
 dpkg -i snapclient_* || true
 
-cp /docker/music/snapserver/snapserver.conf
+cp /docker/music/snapserver/snapserver.conf /etc/snapserver
 
 # make the flask application start on boot
 systemctl enable /docker/music/snapcontrol/snapcontrol.service
