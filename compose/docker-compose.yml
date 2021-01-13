@@ -15,15 +15,3 @@ services:
       - ${home}/config/mopidy.conf:/etc/mopidy/mopidy.conf
       #- /home/rm/Desktop/music:/var/lib/mopidy/media
     #network_mode: host
-
-  snapserver:
-    restart: always
-    image: rmalchow/snapserver
-    volumes:
-      - ${home}/soundshare:/tmp/snapcast
-    command: "-s pipe:///tmp/sharesound/snapfifo?name=Radio"
-    ports:
-      - "1704:1704"
-      - "1705:1705"
-      - "1780:1780"
-    #network_mode: host

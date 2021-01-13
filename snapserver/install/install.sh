@@ -12,6 +12,7 @@ apt-get install -y \
   libasound2 libavahi-client3 libavahi-common3 libexpat1 \
   libflac8 libogg0 libopus0 libsoxr0 libvorbis0a \
   libvorbisenc2 samba-client
+
 arch=$(arch)
 
 if [ "x86_64" == ${arch} ]; then
@@ -29,10 +30,12 @@ dpkg --add-architecture ${arch} || echo "failed to add architecture ${arch}"
 
 
 echo "downloading snapserver release ... "
-wget https://github.com/badaix/snapcast/releases/download/v0.22.0/snapserver_0.22.0-1_${arch}.deb
+wget https://github.com/badaix/snapcast/releases/download/v0.23.0/snapserver_0.23.0-1_${arch}.deb
+wget https://github.com/badaix/snapcast/releases/download/v0.23.0/snapclient_0.23.0-1_${arch}.deb
 
 echo "installing snapserver release ... "
 dpkg -i snapserver_* || true
+dpkg -i snapclient_* || true
 apt-get update
 apt-get -f install -y
 
