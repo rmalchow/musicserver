@@ -44,13 +44,16 @@ fi
 systemctl enable avahi-daemon
 systemctl restart avahi-daemon
 
-echo "downloading snapserver release ... "
+echo "downloading snapcast release ... "
 wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}-1_armhf.deb
 wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapclient_${SNAPCAST_VERSION}-1_armhf.deb
 
-echo "installing snapserver release ... "
+echo "installing snapcast release ... "
 dpkg -i snapserver_* || true
 dpkg -i snapclient_* || true
+
+echo "installing mopidy ... "
+bash ${BASEDIR}/mopidy/install/install.sh
 
 cp ${BASEDIR}/snapserver/snapserver.conf /etc/snapserver
 
