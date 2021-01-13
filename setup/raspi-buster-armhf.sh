@@ -1,6 +1,9 @@
 #/bin/bash
 set -e
 
+SNAPCAST_VERSION=0.23.0
+BASEDIR=/music
+
 # configure avahi
 echo "enter a hostname:"
 read HN
@@ -27,18 +30,10 @@ apt-get install -y \
   libflac8 libogg0 libopus0 libsoxr0 libvorbis0a \
   libvorbisenc2 samba-client
 
-# install docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-bash get-docker.sh
-apt-get install cgroup-bin cgroup-tools libcgroup1 aufs-tools -y
-apt-get install docker-ce docker-ce-cli containerd.io docker-compose -y
-systemctl enable docker
-systemctl restart docker
-
 # create compose stack from github
-mkdir -p /docker/music
-cd /docker/music
-if [ -d "/docker/music/.git" ]; then
+mkdir -p ${BASEDIR}
+cd ${BASEDIR}
+if [ -d "${BASEDIR}/.git" ]; then
   echo "updating musicserver git repo ... "
   git pull
 else
@@ -46,26 +41,22 @@ else
   git clone https://github.com/rmalchow/musicserver.git .
 fi
 
-
 systemctl enable avahi-daemon
 systemctl restart avahi-daemon
 
-#start stack
-cd /docker/music/compose
-bash ./start.sh
-
 echo "downloading snapserver release ... "
-wget https://github.com/badaix/snapcast/releases/download/v0.23.0/snapserver_0.23.0-1_armhf.deb
-wget https://github.com/badaix/snapcast/releases/download/v0.23.0/snapclient_0.23.0-1_armhf.deb
+wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}-1_armhf.deb
+wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapclient_${SNAPCAST_VERSION}-1_armhf.deb
 
 echo "installing snapserver release ... "
 dpkg -i snapserver_* || true
 dpkg -i snapclient_* || true
 
-cp /docker/music/snapserver/snapserver.conf /etc/snapserver
+cp ${BASEDIR}/snapserver/snapserver.conf /etc/snapserver
 
 # make the flask application start on boot
-systemctl enable /docker/music/snapcontrol/snapcontrol.service
-systemctl enable /docker/music/snapserver/snapserver.service
+systemctl enable ${BASEDIR}/snapcontrol/snapcontrol.service
+systemctl enable ${BASEDIR}/snapserver/snapserver.service
+systemctl enable ${BASEDIR}/mopidy/mopidy.service
 systemctl restart snapcontrol
 systemctl restart snapserver

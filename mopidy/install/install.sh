@@ -2,7 +2,7 @@
 
 set -e
 
-cd /install
+cd $(dirname $0)
 
 apt update
 echo "installing basics ... "
@@ -15,10 +15,10 @@ cp mopidy.list /etc/apt/sources.list.d/mopidy.list
 
 apt update
 echo "installing mopidy packages ... "
-apt install mopidy mopidy-local mopidy-local-sqlite mopidy-mpd snapclient snapserver -y
-cat /etc/mopidy/*
-
+apt install mopidy mopidy-local mopidy-local-sqlite mopidy-mpd -y
 apt-get clean all
+
+cp mopidy.conf /etc/mopidy
 
 echo "installing mopidy modules ... "
 pip3 install Mopidy-Iris
@@ -27,7 +27,6 @@ pip3 install Mopidy-MPD
 pip3 install Mopidy-Jellyfin
 pip3 install Mopidy-TuneIn
 
-cp mopidy.conf /etc/mopidy/
 chmod -R 755 /etc/mopidy
 
 rm -rf /root/.cache/*
