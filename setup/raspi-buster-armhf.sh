@@ -7,6 +7,7 @@ BASEDIR=/music
 # configure avahi
 echo "enter a hostname:"
 read HN
+
 hostnamectl set-hostname $HN || true
 
 export DEBIAN_FRONTEND=noninteractive

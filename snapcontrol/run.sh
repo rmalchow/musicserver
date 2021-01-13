@@ -10,7 +10,7 @@ if [ -f bin/active ]; then
   . ./bin/activate
 else
   echo "installing dependencies"
-  python3 -m venv /docker/music/snapcontrol
+  python3 -m venv /music/snapcontrol
   . ./bin/activate
   pip3 install zeroconf flask flask-jsonpify flask-sqlalchemy flask-restful uwsgi requests psutil
 fi
