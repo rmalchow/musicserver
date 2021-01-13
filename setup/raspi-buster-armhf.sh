@@ -45,6 +45,7 @@ systemctl enable avahi-daemon
 systemctl restart avahi-daemon
 
 echo "downloading snapcast release ... "
+rm *.deb
 wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}-1_armhf.deb
 wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapclient_${SNAPCAST_VERSION}-1_armhf.deb
 
