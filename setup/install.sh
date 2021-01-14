@@ -51,7 +51,7 @@ dpkg -i snapclient_* || true
 echo "installing mopidy ... "
 bash ${BASEDIR}/mopidy/install/install.sh
 
-cp ${BASEDIR}/snapserver/snapserver.conf /etc/snapserver
+cp ${BASEDIR}/snapserver/snapserver.conf /etc/snapserver.conf
 
 # make the flask application start on boot
 systemctl enable ${BASEDIR}/snapcontrol/snapcontrol.service
