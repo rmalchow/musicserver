@@ -1,2 +1,2 @@
 #!/bin/bash
-exec /usr/bin/mopidy --config /etc/mopidy/mopidy.conf
+exec nohup /usr/bin/mopidy --config /etc/mopidy/mopidy.conf

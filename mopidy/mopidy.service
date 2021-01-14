@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=root
 Group=root
-WorkingDirectory=/docker/music/snapcontrol
-ExecStart=/docker/music/mopidy/run.sh
+WorkingDirectory=/music/snapcontrol
+ExecStart=/music/mopidy/run.sh
 
 [Install]
 WantedBy=multi-user.target

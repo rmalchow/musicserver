@@ -15,4 +15,4 @@ else
   pip3 install zeroconf flask flask-jsonpify flask-sqlalchemy flask-restful uwsgi requests psutil
 fi
 
-python3 main.py
+exec nohup python3 main.py
